@@ -93,9 +93,16 @@ server:
     prefetch: yes
 
     # One thread should be sufficient, can be increased on beefy machines
-    num-threads: 1
-
-    # Ensure kernel buffer is large enough to not loose messages in traffix spikes
+    num-threads: 1
+    
+    # more cache memory, rrset=msg*2
+    rrset-cache-size: 100m
+    msg-cache-size: 50m
+    
+    # Faster UDP with multithreading (only on Linux).
+	   so-reuseport: yes
+    
+    # Ensure kernel buffer is large enough to not loose messages in traffix spikes
     so-rcvbuf: 1m
 
     # Ensure privacy of local IP ranges
