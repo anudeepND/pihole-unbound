@@ -76,7 +76,7 @@ server:
     # Trust glue only if it is within the servers authority
     harden-glue: yes
 
-    # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS
+    # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS (to diable DNSSEC set harden-dnssec-stripped: no)
     harden-dnssec-stripped: yes
 
     # Use Capitalization randomization
@@ -84,7 +84,7 @@ server:
     # Attackers hoping to poison a DNS cache must guess the mixed-case encoding of the query. This increases the difficulty of such an attack significantly
     use-caps-for-id: yes
 
-    # TTL bounds for cache
+    # TTL bounds for cache (Domains will be cached for minimum of 3600 seconds)
     cache-min-ttl: 3600
     cache-max-ttl: 86400
 
@@ -100,9 +100,9 @@ server:
     msg-cache-size: 50m
     
     # Faster UDP with multithreading (only on Linux).
-	   so-reuseport: yes
-    
-    # Ensure kernel buffer is large enough to not loose messages in traffix spikes
+    so-reuseport: yes
+	
+    # Ensure kernel buffer is large enough to not loose messages in traffix spikes
     so-rcvbuf: 1m
 
     # Ensure privacy of local IP ranges
