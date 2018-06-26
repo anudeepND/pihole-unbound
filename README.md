@@ -59,8 +59,6 @@ Highlights:
 
  `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 ```plain
-## See wiki: https://github.com/pi-hole/pi-hole/...
-#
 server:
     verbosity: 1
     port: 5353
@@ -72,6 +70,7 @@ server:
     do-ip6: no
 
     # Use this only when you downloaded the list of primary root servers!
+    # Location of root.hints
     root-hints: "/var/lib/unbound/root.hints"
 
     # Trust glue only if it is within the servers authority
@@ -82,9 +81,15 @@ server:
     harden-dnssec-stripped: yes
 
     # Use Capitalization randomization
-    # This is an experimental resilience method which uses upper and lower case letters in the question hostname to obtain randomness. Two names with the same spelling but different case should be treated as identical.
-    # Attackers hoping to poison a DNS cache must guess the mixed-case encoding of the query. This increases the difficulty of such an attack significantly
+    # This is an experimental resilience method which uses upper and lower case letters in the question hostname to obtain randomness.
+    # Two names with the same spelling but different case should be treated as identical.
+    # Attackers hoping to poison a DNS cache must guess the mixed-case encoding of the query.
+    # This increases the difficulty of such an attack significantly
     use-caps-for-id: yes
+    
+    # Reduce EDNS reassembly buffer size.
+    # Suggested by the unbound man page to reduce fragmentation reassembly problems
+    edns-buffer-size: 1472
 
     # TTL bounds for cache (Domains will be cached for minimum of 3600 seconds)
     cache-min-ttl: 3600
@@ -98,9 +103,9 @@ server:
     # One thread should be sufficient, can be increased on beefy machines
     num-threads: 1
     
-    # more cache memory, rrset=msg*2
+    # more cache memory. rrset-cache-size should twice what msg-cache-size is.
+    msg-cache-size: 50m
     rrset-cache-size: 100m
-    msg-cache-size: 50m
     
     # Faster UDP with multithreading (only on Linux).
     so-reuseport: yes
@@ -136,3 +141,5 @@ Finally, configure Pi-hole to use your recursive DNS server:
 ![screenshot at 2018-04-18](https://user-images.githubusercontent.com/16748619/38942864-41993ef2-4330-11e8-996a-462a2d87f3f9.png)
 
 (don't forget to hit Return or click on `Save`)
+
+Content borrowed from Pi-Hole wiki.
