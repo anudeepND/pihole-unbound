@@ -46,7 +46,8 @@ sudo apt install unbound
 
 Optional: Download the list of primary root servers (serving the domain `.`). Unbound ships its own list but we can also download the most recent list and update it whenever we think it is a good idea. Note: there is no point in doing it more often then every 6 months.
 ```
-wget https://www.internic.net/domain/named.root -O /var/lib/unbound/root.hints
+wget -O root.hints https://www.internic.net/domain/named.root
+sudo mv root.hints /var/lib/unbound/
 ```
 
 ### Configure `unbound`
@@ -76,7 +77,8 @@ server:
     # Trust glue only if it is within the servers authority
     harden-glue: yes
 
-    # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS (to diable DNSSEC set harden-dnssec-stripped: no)
+    # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS
+    # If you want to disable DNSSEC, set harden-dnssec stripped: no
     harden-dnssec-stripped: yes
 
     # Use Capitalization randomization
@@ -90,6 +92,7 @@ server:
 
     # Perform prefetching of close to expired message cache entries
     # This only applies to domains that have been frequently queried
+    # This flag updates the cached domains
     prefetch: yes
 
     # One thread should be sufficient, can be increased on beefy machines
@@ -124,16 +127,12 @@ You can test DNSSEC validation using
 dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
 dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
 ```
-The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
+The first command should give a status report of `SERVFAIL` and no IP address.
+The second should give `NOERROR` plus an IP address.
 
 ### Configure Pi-hole
 Finally, configure Pi-hole to use your recursive DNS server:
-```
-sudo pihole -a localdnsport 5353
-sudo pihole restartdns
-```
 
-You can also do this from the dashboard:
 ![screenshot at 2018-04-18](https://user-images.githubusercontent.com/16748619/38942864-41993ef2-4330-11e8-996a-462a2d87f3f9.png)
 
 (don't forget to hit Return or click on `Save`)
