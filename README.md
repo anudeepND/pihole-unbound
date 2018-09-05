@@ -112,6 +112,11 @@ server:
 	
     # Ensure kernel buffer is large enough to not loose messages in traffix spikes
     so-rcvbuf: 1m
+    
+    # Enable to not answer id.server and hostname.bind queries. 
+    hide-identity: yes
+    # Enable to not answer version.server and version.bind queries. 
+    hide-version: yes
 
     # Ensure privacy of local IP ranges
     private-address: 192.168.0.0/16
