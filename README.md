@@ -60,7 +60,7 @@ Highlights:
  `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 ```plain
 server:
-    verbosity: 1
+    verbosity: 0
     port: 5353
     do-ip4: yes
     do-udp: yes
@@ -85,7 +85,7 @@ server:
     # Two names with the same spelling but different case should be treated as identical.
     # Attackers hoping to poison a DNS cache must guess the mixed-case encoding of the query.
     # This increases the difficulty of such an attack significantly
-    use-caps-for-id: yes
+    use-caps-for-id: no
     
     # Reduce EDNS reassembly buffer size.
     # Suggested by the unbound man page to reduce fragmentation reassembly problems
@@ -112,16 +112,14 @@ server:
 	
     # Ensure kernel buffer is large enough to not loose messages in traffix spikes
     so-rcvbuf: 1m
-    
-    # Enable to not answer id.server and hostname.bind queries. 
-    hide-identity: yes
-    # Enable to not answer version.server and version.bind queries. 
-    hide-version: yes
 
     # Ensure privacy of local IP ranges
     private-address: 192.168.0.0/16
+    private-address: 169.254.0.0/16
     private-address: 172.16.0.0/12
     private-address: 10.0.0.0/8
+    private-address: fd00::/8
+    private-address: fe80::/10
 ```
 
 Start your local recursive server and test that it's operational:
