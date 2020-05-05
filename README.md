@@ -61,13 +61,19 @@ Highlights:
 ```plain
 server:
     verbosity: 0
-    port: 5353
+    
+    interface: 127.0.0.1
+    port: 5335
     do-ip4: yes
     do-udp: yes
     do-tcp: yes
 
     # May be set to yes if you have IPv6 connectivity
     do-ip6: no
+    
+    # You want to leave this to no unless you have *native* IPv6. With 6to4 and
+    # Terredo tunnels your web browser should favor IPv4 for the same reasons
+    prefer-ip6: no
 
     # Use this only when you downloaded the list of primary root servers!
     # Location of root.hints
@@ -125,15 +131,15 @@ server:
 Start your local recursive server and test that it's operational:
 ```
 sudo service unbound start
-dig pi-hole.net @127.0.0.1 -p 5353
+dig pi-hole.net @127.0.0.1 -p 5335
 ```
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
 
 ### Test validation
 You can test DNSSEC validation using
 ```
-dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
-dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
+dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5335
+dig sigok.verteiltesysteme.net @127.0.0.1 -p 5335
 ```
 The first command should give a status report of `SERVFAIL` and no IP address.
 The second should give `NOERROR` plus an IP address.
@@ -141,7 +147,7 @@ The second should give `NOERROR` plus an IP address.
 ### Configure Pi-hole
 Finally, configure Pi-hole to use your recursive DNS server:
 
-![screenshot at 2018-04-18](https://user-images.githubusercontent.com/16748619/38942864-41993ef2-4330-11e8-996a-462a2d87f3f9.png)
+![screenshot at 2018-04-18](https://docs.pi-hole.net/images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
 
