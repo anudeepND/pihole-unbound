@@ -52,7 +52,7 @@ sudo mv root.hints /var/lib/unbound/
 
 ### Configure `unbound`
 Highlights:
-- Listen only for queries from the local Pi-hole installation (on port 5353)
+- Listen only for queries from the local Pi-hole installation (on port 5335)
 - Listen for both UDP and TCP requests
 - Verify DNSSEC signatures, discarding BOGUS domains
 - Apply a few security and privacy tricks
