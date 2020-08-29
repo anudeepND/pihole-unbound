@@ -114,8 +114,6 @@ server:
     # the cache does not match up with the actual data anymore
     cache-min-ttl: 300
     cache-max-ttl: 86400
-    msg-cache-size: 128m
-    rrset-cache-size: 256m
     
     # Have unbound attempt to serve old responses from cache with a TTL of 0 in
     # the response without waiting for the actual resolution to finish. The
