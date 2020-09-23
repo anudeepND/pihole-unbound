@@ -244,12 +244,12 @@ Finally, configure Pi-hole to use your recursive DNS server:
 
 Don't forget to click Save!
 
-### Donation
+### Support
 
-All donations are welcome and any amount of money will help me to maintain this project :)
-
-<p align="center">  
-  <a href="https://paypal.me/anudeepND" target="_blank"><img alt="Donate using Paypal" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
-  &nbsp;&nbsp;
-  <a href="https://liberapay.com/Anudeep/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
-</p>
+Your support will help me to keep the project running and provide you quality service. You can also donate using UPI enabled apps such as __`PhonePe`__, __`Google Pay`__, __`Paytm`__ and more! (UPI ID: anudeepnd@ybl). If you have any queries related to PayPal or donation, you can send a DM to me on [`Twitter`](https://twitter.com/anudeepnd).  
+<div align="center">   
+  <a href="https://paypal.me/anudeepND" target="_blank"><img alt="Donate using Paypal" src="https://raw.githubusercontent.com/anudeepND/blacklist/master/images/paypal.png" width="160" height="40"></a>
+  &nbsp;
+  &nbsp;
+  <a href="https://upi.anudeep.me"><img alt="Donate using UPI apps" src="https://raw.githubusercontent.com/anudeepND/blacklist/master/images/upi.png" width="115" height="40"></a>
+</div>
