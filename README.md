@@ -58,7 +58,7 @@ Highlights:
 - Apply a few security and privacy tricks
 
  `/etc/unbound/unbound.conf.d/pi-hole.conf`:
-```plain
+```yaml
 server:
     verbosity: 0
     
