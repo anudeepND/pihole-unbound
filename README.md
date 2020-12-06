@@ -89,13 +89,6 @@ server:
     # If you want to disable DNSSEC, set harden-dnssec stripped: no
     harden-dnssec-stripped: yes
     
-    # Use Capitalization randomization
-    # This is an experimental resilience method which uses upper and lower case letters in the question hostname to obtain randomness.
-    # Two names with the same spelling but different case should be treated as identical.
-    # Attackers hoping to poison a DNS cache must guess the mixed-case encoding of the query.
-    # This increases the difficulty of such an attack significantly
-    use-caps-for-id: yes
-    
     # Reduce EDNS reassembly buffer size.
     # Suggested by the unbound man page to reduce fragmentation reassembly problems
     edns-buffer-size: 1472
@@ -147,7 +140,7 @@ server:
     
     # Deny queries of type ANY with an empty response.
     # Works only on version 1.8 and above
-    # deny-any: yes
+    deny-any: yes
 
     # Do no insert authority/additional sections into response messages when
     # those sections are not required. This reduces response size
@@ -185,20 +178,17 @@ server:
     # When it reaches the threshold, a defensive action of clearing the rrset
     # and message caches is taken, hopefully flushing away any poison.
     # Unbound suggests a value of 10 million.
-    unwanted-reply-threshold: 10000
-    
-    # Enable ratelimiting of queries (per second) sent to nameserver for
-    # performing recursion. More queries are turned away with an error
-    # (servfail). This stops recursive floods (e.g., random query names), but
-    # not spoofed reflection floods. Cached responses are not rate limited by
-    # this setting. Experimental option.
-    ratelimit: 1000
+    unwanted-reply-threshold: 100000
     
     # Minimize logs
     # Do not print one line per query to the log
     log-queries: no
     # Do not print one line per reply to the log
     log-replies: no
+    # Do not print log lines that say why queries return SERVFAIL to clients
+    log-servfail: no
+    # Do not print log lines to inform about local zone actions
+    log-local-actions: no
     # Do not print log lines that say why queries return SERVFAIL to clients
     logfile: /dev/null
     
