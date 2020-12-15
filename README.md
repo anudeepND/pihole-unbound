@@ -89,9 +89,11 @@ server:
     # If you want to disable DNSSEC, set harden-dnssec stripped: no
     harden-dnssec-stripped: yes
     
-    # Reduce EDNS reassembly buffer size.
-    # Suggested by the unbound man page to reduce fragmentation reassembly problems
-    edns-buffer-size: 1472
+    # Number of bytes size to advertise as the EDNS reassembly buffer
+    # size. This is the value put into  datagrams over UDP towards
+    # peers. The actual buffer size is determined by msg-buffer-size
+    # (both for TCP and UDP).
+    edns-buffer-size: 1232
     
     # Rotates RRSet order in response (the pseudo-random 
     # number is taken from Ensure privacy of local IP 
