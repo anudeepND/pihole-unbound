@@ -2,12 +2,12 @@
 ### What is unbound?
 [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) is a validating, recursive, caching DNS resolver developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
 
-## Setting up Pi-hole as a recursive DNS server solution
+### Setting up Pi-hole as a recursive DNS server solution
 Install the Unbound recursive DNS resolver:
 ```
 sudo apt install unbound
 ```
-For recursively querying a host that is not cached as an address, the resolver needs to start at the top of the server tree and query the root servers, to know where to go for the top level domain for the address being queried. Unbound comes with default builtin hints. Remember to update this file evry 6 months.
+For recursively querying a host that is not cached as an address, the resolver needs to start at the top of the server tree and query the root servers, to know where to go for the top level domain for the address being queried. Unbound comes with default builtin hints. Remember to update this file every 6 months.
 ```
 wget -O root.hints https://www.internic.net/domain/named.root
 sudo mv root.hints /var/lib/unbound/
@@ -200,16 +200,6 @@ The second should give `NOERROR` plus an IP address.
 ### Configure Pi-hole
 Configure Pi-hole to use unbound as your recursive DNS server:
 
-![screenshot at 2018-04-18](https://i.ibb.co/sRZVvrP/Recursive-Resolver.png)
+![screenshot at 2018-04-18](https://i.imgur.com/M0Yh8dw.png)
 
 Click save.
-
-### Support
-
-Your support will help me to keep the project running and provide you quality service. You can also donate using UPI enabled apps such as __`PhonePe`__, __`Google Pay`__, __`Paytm`__ and more! (UPI ID: anudeepnd@ybl). If you have any queries related to PayPal or donation, you can send a DM to me on [`Twitter`](https://twitter.com/anudeepnd).  
-<div align="center">   
-  <a href="https://paypal.me/anudeepND" target="_blank"><img alt="Donate using Paypal" src="https://raw.githubusercontent.com/anudeepND/blacklist/master/images/paypal.png" width="160" height="40"></a>
-  &nbsp;
-  &nbsp;
-  <a href="https://upi.anudeep.me"><img alt="Donate using UPI apps" src="https://raw.githubusercontent.com/anudeepND/blacklist/master/images/upi.png" width="115" height="40"></a>
-</div>
